@@ -3,7 +3,8 @@ TODO LIST
 - [X] Image rendering
 - [X] Better image rendering
 - [X] Text rendering
-- [ ] Audio  
+- [X] Audio  
+- [ ] Reading directories to structs
 - [ ] HitCircle reading
 - [ ] Spinner reading
 - [ ] Slider reading
