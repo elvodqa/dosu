@@ -3,7 +3,7 @@ import std.conv;
 import bindbc.sdl;
 import dosu.sprite;
 import dosu.text;
-import gamemixer;
+import dosu.music_player;
 
 void main()
 {
@@ -22,6 +22,11 @@ void main()
 		throw new Exception("Failed loading BindBC SDL_ttf");
 	}
 
+	writeln(sdlMixerSupport);
+	if (loadSDLMixer() < sdlMixerSupport) { 
+		throw new Exception("Failed loading BindBC SDL_mixer");
+	}
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		writeln("Failed to initialize SDL: ", SDL_GetError());
@@ -31,10 +36,13 @@ void main()
 	if(IMG_Init(flags) != flags) { 
 		throw new Exception("Failed to initialize SDL_image");
 	}
-	IMG_Init(flags);
 
 	if(TTF_Init() == -1) { 
 		throw new Exception("Failed to initialize SDL_ttf");
+	}
+
+	if (Mix_Init(MIX_INIT_MP3) == -1) { 
+		throw new Exception("Failed to initialize SDL_mixer");
 	}
 	
 	auto window = SDL_CreateWindow(
@@ -54,15 +62,17 @@ void main()
 		throw new Exception("Failed to create renderer");
 	}
 	
-	MixerOptions options;
-	IMixer mixer = mixerCreate(options);
+	int w, h;
+	SDL_GetWindowSize(window, &w, &h);
+	Sprite sprite = new Sprite(renderer, "./res/skin/hitcircle.png", w/2-200, h/2-200, 400, 400);
+	Text logoText = new Text("DOSU!", "res/fonts/p5hatty.ttf", 100, w/2, h/2, Alignment.Left);
+	logoText.x = w/2 - logoText.w/2;
+	logoText.y = h/2 - logoText.h/2;
 	
-	IAudioSource music = mixer.createSourceFromFile("res/surprise.mp3");
-	mixer.play(music);
+	MusicPlayer songPlayer = new MusicPlayer();
+	songPlayer.play("./res/surprise.mp3");
 	
-	Sprite sprite = new Sprite(renderer, "./res/skin/hitcircle.png", 0, 0);
-	Text t1 = new Text("Deneme sdfd dsf ds  dsf fdsf ds dsf d", "res/fonts/p5hatty.ttf", 50, 100, 100, Alignment.Left);
-
+	
 	SDL_SetRenderDrawColor(renderer, 88, 85, 83, 255);
 	bool running = true;
 	SDL_Event event; 
@@ -72,18 +82,54 @@ void main()
 				case SDL_QUIT:
 					running = false;
 					break;
+				// resize
+				case SDL_WINDOWEVENT:
+					if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+						SDL_GetWindowSize(window, &w, &h);
+						sprite.rect.x = w/2-200;
+						sprite.rect.y = h/2-200;
+						logoText.x = w/2 - logoText.w/2;
+						logoText.y = h/2 - logoText.h/2;
+					}
+					break;
+
+				// key pressed
+				case SDL_KEYDOWN:
+					switch (event.key.keysym.sym) {
+						case SDLK_ESCAPE:
+							running = false;
+							break;
+						case SDLK_SPACE:
+							if (!songPlayer.isPlaying()) {
+								songPlayer.resume();
+							} else {
+								songPlayer.pause();
+							}
+							break;
+						case SDLK_LEFT:
+							songPlayer.setPosition(songPlayer.getPosition() - 10_000);
+							break;
+						case SDLK_RIGHT:
+							songPlayer.setPosition(songPlayer.getPosition() + 10_000);
+							break;
+						default:
+							break;
+					}
+					break;
 				default:
 					break;
 			}
 		}
-
+		sprite.angle += 10;
 
 		SDL_RenderClear(renderer);
 
 		sprite.draw(renderer);
-		t1.text = to!string(mixer.playbackTimeInSeconds());
-		t1.draw(renderer, 500);
+		logoText.draw(renderer);
+		logoText.text = "DOSU! " ~ (songPlayer.getPosition()/1000).to!string;
 
 		SDL_RenderPresent(renderer);
 	}
 }
+
+

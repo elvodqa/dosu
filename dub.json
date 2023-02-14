@@ -4,14 +4,23 @@
 	],
 	"copyright": "Copyright © 2023, Emir Cengiz",
 	"dependencies": {
-		"bindbc-sdl": "~>1.2.4",
-		"game-mixer": {"repository": "git+https://github.com/elvodqa/game-mixer.git", "version": "f6130aa"}
+		"bindbc-sdl": {
+			"repository": "git+https://github.com/BindBC/bindbc-sdl.git",
+			"version": "f431f59"
+		}
 	},
 	"description": "A osu! clone in D.",
 	"license": "proprietary",
 	"name": "dosu",
 	"versions": [
 		"SDL_Image",
-		"SDL_TTF"
+		"SDL_TTF",
+		"SDL_Mixer"
+	],
+	"libs": [
+		"SDL2",
+		"SDL2_image",
+		"SDL2_ttf",
+		"SDL2_mixer"
 	]
 }

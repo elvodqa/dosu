@@ -1,4 +1,4 @@
-module dosu.beatmap_directory;
+module dosu.parser.beatmap_directory;
 
 
 

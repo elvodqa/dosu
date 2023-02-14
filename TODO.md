@@ -3,7 +3,8 @@ TODO LIST
 - [X] Image rendering
 - [X] Better image rendering
 - [X] Text rendering
-- [X] Audio  
+- [X] Music playing, stopping, resuming, get/set position etc.  
+- [ ] Get music length
 - [ ] Reading directories to structs
 - [ ] HitCircle reading
 - [ ] Spinner reading

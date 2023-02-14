@@ -4,7 +4,7 @@
 		"audio-formats": "1.5.3",
 		"bindbc-loader": "1.0.1",
 		"bindbc-openal": "1.0.0",
-		"bindbc-sdl": "1.2.4",
+		"bindbc-sdl": {"version":"f431f59","repository":"git+https://github.com/BindBC/bindbc-sdl.git"},
 		"derelict-al": "1.0.3",
 		"derelict-util": "2.0.6",
 		"dplug": "12.8.3",
