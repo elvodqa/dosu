@@ -1,0 +1,19 @@
+TODO LIST
+- [X] Basic window
+- [X] Image rendering
+- [X] Better image rendering
+- [ ] Text rendering
+- [ ] Audio rendering 
+- [ ] HitCircle reading
+- [ ] Spinner reading
+- [ ] Slider reading
+- [ ] Rendering map files
+- [ ] Syncing with songs 
+- [ ] Accept player input 
+- [ ] Timing window
+- [ ] Mods/Auto?????
+- [ ] Skin loading
+- [ ] UI - Button
+- [ ] UI - Slider
+- [ ] UI - Input field
+- [ ] UI - Song select

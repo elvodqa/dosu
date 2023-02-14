@@ -1,0 +1,16 @@
+{
+	"authors": [
+		"Emir Cengiz"
+	],
+	"copyright": "Copyright © 2023, Emir Cengiz",
+	"dependencies": {
+		"bindbc-sdl": "~>1.2.4"
+	},
+	"versions": [
+		"SDL_Image",
+		"SDL_TTF"
+	],
+	"description": "A osu! clone in D.",
+	"license": "proprietary",
+	"name": "dosu"
+}
