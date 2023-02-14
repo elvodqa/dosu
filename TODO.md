@@ -2,8 +2,8 @@ TODO LIST
 - [X] Basic window
 - [X] Image rendering
 - [X] Better image rendering
-- [ ] Text rendering
-- [ ] Audio rendering 
+- [X] Text rendering
+- [ ] Audio  
 - [ ] HitCircle reading
 - [ ] Spinner reading
 - [ ] Slider reading

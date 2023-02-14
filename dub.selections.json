@@ -1,7 +1,15 @@
 {
 	"fileVersion": 1,
 	"versions": {
+		"audio-formats": "1.5.3",
 		"bindbc-loader": "1.0.1",
-		"bindbc-sdl": "1.2.4"
+		"bindbc-openal": "1.0.0",
+		"bindbc-sdl": "1.2.4",
+		"derelict-al": "1.0.3",
+		"derelict-util": "2.0.6",
+		"dplug": "12.8.3",
+		"game-mixer": {"version":"f6130aa","repository":"git+https://github.com/elvodqa/game-mixer.git"},
+		"intel-intrinsics": "1.11.1",
+		"libsoundio-d": {"version":"42e825d","repository":"git+https://github.com/dkorpel/libsoundio-d.git"}
 	}
 }
