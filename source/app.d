@@ -62,7 +62,7 @@ void main()
 	bool running = true;
 	SDL_Event event; 
 	while (running) {
-		while (SDL_PollEvent(&event)) {
+		if (SDL_PollEvent(&event)) {
 			switch (event.type) {
 				case SDL_QUIT:
 					running = false;
@@ -77,8 +77,8 @@ void main()
 
 		sprite.draw(renderer);
 		t1.draw(renderer, 500);
-		t1.text = t1.text ~ "a";
-		t1.size
+
+		
 
 		SDL_RenderPresent(renderer);
 
