@@ -4,6 +4,7 @@ import bindbc.sdl;
 import dosu.sprite;
 import dosu.text;
 import dosu.music_player;
+import loader = bindbc.loader.sharedlib;
 
 void main()
 {
@@ -22,10 +23,27 @@ void main()
 		throw new Exception("Failed loading BindBC SDL_ttf");
 	}
 
-	writeln(sdlMixerSupport);
-	if (loadSDLMixer() < sdlMixerSupport) { 
-		throw new Exception("Failed loading BindBC SDL_mixer");
-	}
+	SDLMixerSupport ret = loadSDLMixer();
+	if(ret != sdlMixerSupport) {
+        // Log the error info
+        foreach(info; loader.errors) {
+            /*
+             A hypothetical logging function. Note that `info.error` and `info.message` are `const(char)*`, not
+             `string`.
+            */
+            writeln(info.error, info.message);
+        }
+
+        // Optionally construct a user-friendly error message for the user
+        string msg;
+        if(ret == SDLMixerSupport.noLibrary) {
+            msg = "This application requires the SDL Mixer library.";
+        } else {
+            msg = "The version of the SDL Mixer library on your system is too low. Please upgrade.";
+        }
+        // A hypothetical message box function
+        writeln(msg);
+    }
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
