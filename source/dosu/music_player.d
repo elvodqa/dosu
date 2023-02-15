@@ -79,18 +79,14 @@ class MusicPlayer
             }
             Mix_RewindMusic();
             Mix_SetMusicPosition(ms/1000);
-            position = ms; // Update the position variable
-            startTime = SDL_GetTicks(); // Update the startTime variable to reflect the new start time
+            position = ms; 
         }
     }
 
     double getPosition()
     {
-        if (!playing)
-        {
-            return position;
-        }
-        return position + (SDL_GetTicks() - startTime);
+        position = Mix_GetMusicPosition(music);
+        return 1;
     }
 
     

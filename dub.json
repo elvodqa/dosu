@@ -13,9 +13,10 @@
 	"license": "proprietary",
 	"name": "dosu",
 	"versions": [
+		"SDL_2022",
 		"SDL_Image",
 		"SDL_TTF",
-		"SDL_Mixer"
+		"SDL_Mixer_260"
 	],
 	"libs": [
 		"SDL2",
